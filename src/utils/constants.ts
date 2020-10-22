@@ -10,8 +10,11 @@ export const defaultSingleObjectState: SingleObjectState = {
   ...commonState,
   data: {},
 };
-
-export const defaultManyObjectState = {
+export const defaultSingleObjectArrayState: SingleObjectArrayState = {
+  ...commonState,
+  data: [],
+};
+export const defaultManyObjectState: ManyObjectState = {
   ...commonState,
   data: [],
   pagination: {

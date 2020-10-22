@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { NOT_FOUND } from "pages/pagesPath";
 import ErrorBoundary from "./ErrorBoundary";
+import Spinner from 'components/atoms/Spinner';
 
 interface RouteType {
   path: string;
@@ -13,7 +14,7 @@ export const convertRoutesToComponents = (routes: RouteType[]) => (
   // more on error boundaries
   // https://reactjs.org/docs/error-boundaries.html
   <ErrorBoundary>
-    <React.Suspense fallback={<div>Loading...</div>}>
+    <React.Suspense fallback={<Spinner />}>
       <Switch>
         {routes.map((route, index) => (
           <Route key={index} {...route} />
@@ -23,3 +24,13 @@ export const convertRoutesToComponents = (routes: RouteType[]) => (
     </React.Suspense>
   </ErrorBoundary>
 );
+
+export function convertParamsToString(url: string, urlVariables: Record<string, string>): string {
+  let finalURL = url;
+
+  for (const [key, value] of Object.entries(urlVariables)) {
+    finalURL = finalURL.replace(`:${key}`, value);
+  }
+
+  return finalURL
+}

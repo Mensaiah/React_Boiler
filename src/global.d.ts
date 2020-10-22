@@ -30,6 +30,9 @@ interface ManyObjectState<T = Record<string, any>> extends ReducerStateType {
 interface SingleObjectState extends ReducerStateType {
   data: Record<string, any>;
 }
+interface SingleObjectArrayState extends ReducerStateType {
+  data: T[];
+}
 
 interface Payload {
   data?: Record<string, any> | Record<string, any>[];
